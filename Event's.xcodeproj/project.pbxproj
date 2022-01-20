@@ -14,6 +14,13 @@
 		C83BEDEC2798502F00370AC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83BEDEA2798502F00370AC7 /* Main.storyboard */; };
 		C83BEDEE2798503200370AC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C83BEDED2798503200370AC7 /* Assets.xcassets */; };
 		C83BEDF92798649400370AC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83BEDF82798649300370AC7 /* LaunchScreen.storyboard */; };
+		C8B6FEA12799723B00CAB319 /* ListEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA02799723B00CAB319 /* ListEventsViewController.swift */; };
+		C8B6FEA32799727D00CAB319 /* EnterInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA22799727D00CAB319 /* EnterInfoViewController.swift */; };
+		C8B6FEA5279972B300CAB319 /* AllInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA4279972B300CAB319 /* AllInfoViewController.swift */; };
+		C8B6FEA72799731000CAB319 /* PersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA62799731000CAB319 /* PersonInfoViewController.swift */; };
+		C8B6FEA92799734100CAB319 /* AddThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA82799734100CAB319 /* AddThemesViewController.swift */; };
+		C8B6FEAF2799762700CAB319 /* InfoEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEAE2799762700CAB319 /* InfoEvents.swift */; };
+		C8B6FEB42799C18E00CAB319 /* Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEB32799C18E00CAB319 /* Capitalize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,13 @@
 		C83BEDED2798503200370AC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C83BEDF22798503200370AC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C83BEDF82798649300370AC7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C8B6FEA02799723B00CAB319 /* ListEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsViewController.swift; sourceTree = "<group>"; };
+		C8B6FEA22799727D00CAB319 /* EnterInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoViewController.swift; sourceTree = "<group>"; };
+		C8B6FEA4279972B300CAB319 /* AllInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllInfoViewController.swift; sourceTree = "<group>"; };
+		C8B6FEA62799731000CAB319 /* PersonInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoViewController.swift; sourceTree = "<group>"; };
+		C8B6FEA82799734100CAB319 /* AddThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThemesViewController.swift; sourceTree = "<group>"; };
+		C8B6FEAE2799762700CAB319 /* InfoEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoEvents.swift; sourceTree = "<group>"; };
+		C8B6FEB32799C18E00CAB319 /* Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capitalize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +72,63 @@
 		C83BEDE12798502F00370AC7 /* Event's */ = {
 			isa = PBXGroup;
 			children = (
-				C83BEDE22798502F00370AC7 /* AppDelegate.swift */,
-				C83BEDE42798502F00370AC7 /* DocumentBrowserViewController.swift */,
-				C83BEDE62798502F00370AC7 /* DocumentViewController.swift */,
-				C83BEDE82798502F00370AC7 /* Document.swift */,
-				C83BEDEA2798502F00370AC7 /* Main.storyboard */,
-				C83BEDED2798503200370AC7 /* Assets.xcassets */,
-				C83BEDF82798649300370AC7 /* LaunchScreen.storyboard */,
+				C8B6FEB22799C17500CAB319 /* Extension */,
+				C8B6FEAD2799759300CAB319 /* Supporting files */,
+				C8B6FEAC2799758C00CAB319 /* Model */,
+				C8B6FEAB2799758600CAB319 /* View */,
+				C8B6FEAA2799757300CAB319 /* Controller */,
 				C83BEDF22798503200370AC7 /* Info.plist */,
 			);
 			path = "Event's";
+			sourceTree = "<group>";
+		};
+		C8B6FEAA2799757300CAB319 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C8B6FEA02799723B00CAB319 /* ListEventsViewController.swift */,
+				C8B6FEA22799727D00CAB319 /* EnterInfoViewController.swift */,
+				C8B6FEA4279972B300CAB319 /* AllInfoViewController.swift */,
+				C8B6FEA62799731000CAB319 /* PersonInfoViewController.swift */,
+				C8B6FEA82799734100CAB319 /* AddThemesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C8B6FEAB2799758600CAB319 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C83BEDF82798649300370AC7 /* LaunchScreen.storyboard */,
+				C83BEDEA2798502F00370AC7 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8B6FEAC2799758C00CAB319 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8B6FEAE2799762700CAB319 /* InfoEvents.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C8B6FEAD2799759300CAB319 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				C83BEDE62798502F00370AC7 /* DocumentViewController.swift */,
+				C83BEDE42798502F00370AC7 /* DocumentBrowserViewController.swift */,
+				C83BEDE22798502F00370AC7 /* AppDelegate.swift */,
+				C83BEDE82798502F00370AC7 /* Document.swift */,
+				C83BEDED2798503200370AC7 /* Assets.xcassets */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		C8B6FEB22799C17500CAB319 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C8B6FEB32799C18E00CAB319 /* Capitalize.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,8 +202,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8B6FEA5279972B300CAB319 /* AllInfoViewController.swift in Sources */,
+				C8B6FEA12799723B00CAB319 /* ListEventsViewController.swift in Sources */,
+				C8B6FEA92799734100CAB319 /* AddThemesViewController.swift in Sources */,
 				C83BEDE92798502F00370AC7 /* Document.swift in Sources */,
+				C8B6FEA72799731000CAB319 /* PersonInfoViewController.swift in Sources */,
 				C83BEDE72798502F00370AC7 /* DocumentViewController.swift in Sources */,
+				C8B6FEAF2799762700CAB319 /* InfoEvents.swift in Sources */,
+				C8B6FEA32799727D00CAB319 /* EnterInfoViewController.swift in Sources */,
+				C8B6FEB42799C18E00CAB319 /* Capitalize.swift in Sources */,
 				C83BEDE52798502F00370AC7 /* DocumentBrowserViewController.swift in Sources */,
 				C83BEDE32798502F00370AC7 /* AppDelegate.swift in Sources */,
 			);
