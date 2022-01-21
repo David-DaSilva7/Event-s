@@ -157,9 +157,10 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="uUJ-IQ-Nii"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="nameAttendees" destination="CSb-t3-gQH" id="uUH-oD-FUr"/>
-                        <outlet property="nameEvents" destination="6hG-kN-Bhe" id="DSM-B6-8IX"/>
-                        <outlet property="nameNewAttendees" destination="WhC-vo-vim" id="ptY-JE-2CG"/>
+                        <outlet property="nameAttendeesTextView" destination="CSb-t3-gQH" id="5us-wG-NKh"/>
+                        <outlet property="nameEventsTextField" destination="6hG-kN-Bhe" id="9eO-B1-04d"/>
+                        <outlet property="nameNewAttendeesTextField" destination="WhC-vo-vim" id="2Wp-yG-3DQ"/>
+                        <outlet property="numberDaysPickerView" destination="KiW-y1-dSd" id="0By-MP-ghM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3wN-cS-izn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -254,8 +255,8 @@
                                     <outlet property="delegate" destination="KIP-IB-wra" id="A0J-aB-rae"/>
                                 </connections>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Anniversaire Rico " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="267-Ta-xiQ">
-                                <rect key="frame" x="127" y="196" width="136" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Anniversaire Rico " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="267-Ta-xiQ">
+                                <rect key="frame" x="0.0" y="196" width="390" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -274,7 +275,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="TCM-4P-HhE"/>
                     <connections>
-                        <outlet property="nameEvents" destination="267-Ta-xiQ" id="YpC-ad-JvI"/>
+                        <outlet property="nameEventsLabel" destination="267-Ta-xiQ" id="AiR-zn-TRi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3e0-8F-VuC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

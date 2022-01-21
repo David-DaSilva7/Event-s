@@ -21,6 +21,7 @@
 		C8B6FEA92799734100CAB319 /* AddThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA82799734100CAB319 /* AddThemesViewController.swift */; };
 		C8B6FEAF2799762700CAB319 /* InfoEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEAE2799762700CAB319 /* InfoEvents.swift */; };
 		C8B6FEB42799C18E00CAB319 /* Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEB32799C18E00CAB319 /* Capitalize.swift */; };
+		C8B6FEB6279B002F00CAB319 /* SettingsRepisotory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEB5279B002F00CAB319 /* SettingsRepisotory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		C8B6FEA82799734100CAB319 /* AddThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThemesViewController.swift; sourceTree = "<group>"; };
 		C8B6FEAE2799762700CAB319 /* InfoEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoEvents.swift; sourceTree = "<group>"; };
 		C8B6FEB32799C18E00CAB319 /* Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capitalize.swift; sourceTree = "<group>"; };
+		C8B6FEB5279B002F00CAB319 /* SettingsRepisotory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepisotory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				C8B6FEAE2799762700CAB319 /* InfoEvents.swift */,
+				C8B6FEB5279B002F00CAB319 /* SettingsRepisotory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8B6FEB6279B002F00CAB319 /* SettingsRepisotory.swift in Sources */,
 				C8B6FEA5279972B300CAB319 /* AllInfoViewController.swift in Sources */,
 				C8B6FEA12799723B00CAB319 /* ListEventsViewController.swift in Sources */,
 				C8B6FEA92799734100CAB319 /* AddThemesViewController.swift in Sources */,
