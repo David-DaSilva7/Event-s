@@ -16,6 +16,8 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var nameNewAttendeesTextField: UITextField!
     @IBOutlet weak var numberDaysPickerView: UIPickerView!
     
+    @IBAction func unwindToEnterInfo(segue:UIStoryboardSegue) { }
+    
     @IBAction func addNames(_ sender: Any) {
         if let namesAdd = nameNewAttendeesTextField.text, !namesAdd.isEmpty {
             names.append(namesAdd.capitalizingFirstLetter())
