@@ -20,4 +20,9 @@ class AttendeesTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBOutlet weak var namesAttendeesLabel: UILabel!
+    
+    func configure(name: String) {
+        namesAttendeesLabel.text = name
+    }
 }
