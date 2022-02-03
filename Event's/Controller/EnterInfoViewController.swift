@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
     var names: [String] = []
     
@@ -28,10 +28,25 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     
     @IBAction func goToAllInfo(_ sender: Any) {
-        var attendees = nameEventsTextField.text
-        SettingsRepository.attendees = attendees ?? ""
+        let nameEvents = nameEventsTextField.text
+        SettingsRepository.nameEvents = nameEvents ?? ""
         
-        retrieveNumberDays()
+        let nameAttendees = names
+        SettingsRepository.attendees = nameAttendees 
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        nameEventsTextField.resignFirstResponder()
+        nameNewAttendeesTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func removeName(indexName: Int) {
+        names.remove(at: indexName)
     }
     
     override func viewDidLoad() {
@@ -39,17 +54,32 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     
-    
+    // nombres de colonnes
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
+    //nombres de ligne
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return InfoEvents.numberDaysArray.count
     }
     
+    // Contenu dans les lignes
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return InfoEvents.numberDaysArray[row]
+    }
+    
+    // Contenu de la ligne séléctionné 
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selection = InfoEvents.numberDaysArray[row]
+        print ("--")
+        print("ligne : ", row)
+        print ("colonne : ", component)
+        print ("Nombre de jour : ", selection)
+        
+        let numberDays = selection
+        SettingsRepository.numberDays = numberDays 
+        
     }
     
     private func get(_ names: [String]) -> String {
@@ -65,8 +95,9 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         return namesList
     }
     
-        func retrieveNumberDays() {
-            let numberDaysIndex = numberDaysPickerView.selectedRow(inComponent: 0)
-            let numberDays = InfoEvents.numberDaysArray[numberDaysIndex]
-        }
+//        func retrieveNumberDays() {
+//            let numberDaysIndex = numberDaysPickerView.selectedRow(inComponent: 0)
+//            let numberDays = InfoEvents.numberDaysArray[numberDaysIndex]
+//            let infoEvents = InfoEvents(numberDays: numberDays)
+//        }
 }
