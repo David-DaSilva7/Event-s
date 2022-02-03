@@ -7,6 +7,7 @@
 
 import Foundation
 
-class InfoEvents {
-    static var numberDaysArray = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14"]
+struct InfoEvents {
+    static var numberDaysArray = ["1 jour","2 jours","3 jours","4 jours","5 jours","6 jours","7 jours","8 jours","9 jours","10 jours","11 jours","12 jours","13 jours","14 jours"]
+    var numberDays: String?
 }
