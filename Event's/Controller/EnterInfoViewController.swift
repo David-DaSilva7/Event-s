@@ -9,30 +9,39 @@ import UIKit
 
 class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
-    var names: [String] = []
+    static var names: [String] = []
     
     @IBOutlet weak var nameEventsTextField: UITextField!
     @IBOutlet weak var nameAttendeesTextView: UITextView!
     @IBOutlet weak var nameNewAttendeesTextField: UITextField!
     @IBOutlet weak var numberDaysPickerView: UIPickerView!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var addName: UIButton!
+    @IBOutlet weak var clearAttendees: UIButton!
+    @IBOutlet weak var buttonContinue: UIButton!
     
     @IBAction func unwindToEnterInfo(segue:UIStoryboardSegue) { }
     
-    @IBAction func addNames(_ sender: Any) {
-        if let namesAdd = nameNewAttendeesTextField.text, !namesAdd.isEmpty {
-            names.append(namesAdd.capitalizingFirstLetter())
-            nameNewAttendeesTextField.text?.removeAll()
-            nameAttendeesTextView.text = self.get(self.names)
-        }
+    @IBAction func clearAttendees(_ sender: Any) {
+        EnterInfoViewController.names.removeAll()
+        nameAttendeesTextView.text.removeAll()
     }
     
+    @IBAction func addNames(_ sender: Any) {
+        if let namesAdd = nameNewAttendeesTextField.text, !namesAdd.isEmpty {
+            EnterInfoViewController.names.append(namesAdd.capitalizingFirstLetter())
+            nameNewAttendeesTextField.text?.removeAll()
+            nameAttendeesTextView.text = self.get(EnterInfoViewController.names)
+        }
+    }
     
     @IBAction func goToAllInfo(_ sender: Any) {
         let nameEvents = nameEventsTextField.text
         SettingsRepository.nameEvents = nameEvents ?? ""
         
-        let nameAttendees = names
-        SettingsRepository.attendees = nameAttendees 
+        let nameAttendees = EnterInfoViewController.names
+        SettingsRepository.attendees = nameAttendees
+        print("\(EnterInfoViewController.names)")
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -40,17 +49,31 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         nameNewAttendeesTextField.resignFirstResponder()
     }
     
+    @IBAction func dateSelectedFromDatePicker(_ sender: Any) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let date = formatter.string(from: datePicker.date)
+        SettingsRepository.date = date
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func removeName(indexName: Int) {
-        names.remove(at: indexName)
+    func design() {
+        addName.layer.cornerRadius = 17
+        nameNewAttendeesTextField.layer.borderWidth = 0.5
+        nameNewAttendeesTextField.layer.cornerRadius = 16
+        nameEventsTextField.layer.borderWidth = 0.5
+        nameEventsTextField.layer.cornerRadius = 16
+        clearAttendees.layer.cornerRadius = 16
+        buttonContinue.layer.cornerRadius = 16
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        design()
     }
     
     
@@ -72,15 +95,15 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     // Contenu de la ligne séléctionné 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selection = InfoEvents.numberDaysArray[row]
+        let numberDays = selection
+        SettingsRepository.numberDays = numberDays 
         print ("--")
         print("ligne : ", row)
         print ("colonne : ", component)
         print ("Nombre de jour : ", selection)
-        
-        let numberDays = selection
-        SettingsRepository.numberDays = numberDays 
-        
     }
+    
+    
     
     private func get(_ names: [String]) -> String {
         var namesList = ""
