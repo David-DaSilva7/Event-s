@@ -8,16 +8,14 @@
 import Foundation
 
 class SettingsRepository {
-    
-    func removeName(at index: Int) {
-        SettingsRepository.attendees.remove(at: index)
-    }
-    
+
     private enum Keys {
         static let nameEvents = "nameEvents"
         static let numberDays = "numberDays"
         static let attendees = "attendees"
-        
+        static let attendee = "attendee"
+        static let date = "date"
+        static let nameTheme = "nameTheme"
     }
     
     static var nameEvents: String {
@@ -47,4 +45,30 @@ class SettingsRepository {
         }
     }
     
+//    static var attendee: String {
+//        get {
+//            return UserDefaults.standard.string(forKey: Keys.attendee) ?? ""
+//        }
+//        set {
+//            UserDefaults.standard.set(newValue, forKey: Keys.attendee)
+//        }
+//    }
+    
+    static var date: String {
+        get {
+            return UserDefaults.standard.string(forKey: Keys.date) ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.date)
+        }
+    }
+    
+    static var nameTheme: [String] {
+        get {
+            return UserDefaults.standard.object(forKey: Keys.nameTheme) as! [String]
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.nameTheme)
+        }
+    }
 }
