@@ -11,6 +11,7 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
 
     private let segueIdentifier = "segueToPersonInfo"
+    var selectedName = ""
     
     @IBOutlet weak var addPictureButton: UIButton!
     @IBOutlet weak var nameEventsLabel: UILabel!
@@ -18,6 +19,9 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var numberDaysLabel: UILabel!
     @IBOutlet weak var dayOrganizationTextView: UITextView!
     @IBOutlet weak var attendeesTableView: UITableView!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var buttonAddAttendees: UIButton!
+    @IBOutlet weak var buttonContinue: UIButton!
     
     
     @IBAction func buttonLibrary(_ sender: UIButton) {
@@ -52,9 +56,10 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        nameEventsLabel.text = SettingsRepository.nameEvents
-        numberDaysLabel.text = SettingsRepository.numberDays 
+        design()
+        nameEventsLabel.text = SettingsRepository.nameEvents.capitalizingFirstLetter()
+        numberDaysLabel.text = SettingsRepository.numberDays
+        date.text = SettingsRepository.date
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +67,11 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         attendeesTableView.reloadData()
     }
     
+    func design() {
+        addPictureButton.layer.cornerRadius = 17
+        buttonAddAttendees.layer.cornerRadius = 17
+        buttonContinue.layer.cornerRadius = 16
+    }
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -106,17 +116,18 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 //            imagePicker.dismiss(animated: true, completion: nil)
 //        }
 //    }
-    var enterInfoViewController = EnterInfoViewController()
+ 
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == segueIdentifier {
-//            let personInfoVC = segue.destination as! PersonInfoViewController
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueIdentifier {
+            let personInfoVC = segue.destination as! PersonInfoViewController
+            personInfoVC.nameAttendee = selectedName
+        }
+    }
 }
 
 // MARK: - TableView DataSource extension
-extension AllInfoViewController: UITableViewDataSource, UITableViewDelegate {
+extension AllInfoViewController: UITableViewDataSource {
     
     //        Nombres de sections
     func numberOfSections(in tableView : UITableView) -> Int {
@@ -139,13 +150,16 @@ extension AllInfoViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
-    
+}
     // MARK: - TableView Delegate extension
+    extension AllInfoViewController: UITableViewDelegate {
     // Lorsqu'on appui sur une cellue
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        selectedRecipe = hits?[indexPath.row].recipe
-//        selectedRecipeImage = (tableView.cellForRow(at: indexPath) as! RecipeTableViewCell).picture.image
-//        performSegue(withIdentifier: segueIdentifier, sender: self)
+        selectedName = SettingsRepository.attendees[indexPath.row]
+//        let nameAttendee = SettingsRepository.attendees[indexPath.row]
+//        SettingsRepository.attendee = nameAttendee
+        print("J'AI APPUYÉ")
+        performSegue(withIdentifier: segueIdentifier, sender: self)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -154,6 +168,7 @@ extension AllInfoViewController: UITableViewDataSource, UITableViewDelegate {
 //            enterInfoViewController.names.remove(at: indexPath.row)
 //            enterInfoViewController.removeName(indexName: indexPath.row)
             SettingsRepository.attendees.remove(at: indexPath.row)
+//            EnterInfoViewController.names.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

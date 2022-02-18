@@ -12,6 +12,7 @@ class AttendeesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        design()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -21,8 +22,14 @@ class AttendeesTableViewCell: UITableViewCell {
     }
 
     @IBOutlet weak var namesAttendeesLabel: UILabel!
+    @IBOutlet weak var viewDesign: UIView!
+    
     
     func configure(name: String) {
         namesAttendeesLabel.text = name
+    }
+    func design() {
+        viewDesign.layer.cornerRadius = 16
+//        viewDesign.layer.backgroundColor = InfoEvents.randomColor
     }
 }
