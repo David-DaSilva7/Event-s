@@ -15,14 +15,17 @@
 		C83BEDEE2798503200370AC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C83BEDED2798503200370AC7 /* Assets.xcassets */; };
 		C83BEDF92798649400370AC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83BEDF82798649300370AC7 /* LaunchScreen.storyboard */; };
 		C8ADE24D27AC2C9E00D89070 /* AttendeesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ADE24C27AC2C9D00D89070 /* AttendeesTableViewCell.swift */; };
+		C8ADE24F27AD8A9800D89070 /* NamesThemesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ADE24E27AD8A9700D89070 /* NamesThemesTableViewCell.swift */; };
 		C8B6FEA12799723B00CAB319 /* ListEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA02799723B00CAB319 /* ListEventsViewController.swift */; };
 		C8B6FEA32799727D00CAB319 /* EnterInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA22799727D00CAB319 /* EnterInfoViewController.swift */; };
 		C8B6FEA5279972B300CAB319 /* AllInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA4279972B300CAB319 /* AllInfoViewController.swift */; };
-		C8B6FEA72799731000CAB319 /* PersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA62799731000CAB319 /* PersonInfoViewController.swift */; };
 		C8B6FEA92799734100CAB319 /* AddThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA82799734100CAB319 /* AddThemesViewController.swift */; };
 		C8B6FEAF2799762700CAB319 /* InfoEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEAE2799762700CAB319 /* InfoEvents.swift */; };
 		C8B6FEB42799C18E00CAB319 /* Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEB32799C18E00CAB319 /* Capitalize.swift */; };
 		C8B6FEB6279B002F00CAB319 /* SettingsRepisotory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEB5279B002F00CAB319 /* SettingsRepisotory.swift */; };
+		C8C2B11027BE475600C4AB29 /* ChangeDescriptionThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C2B10F27BE475600C4AB29 /* ChangeDescriptionThemeViewController.swift */; };
+		C8ECBCAE27B425100010AA14 /* ListEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECBCAD27B425100010AA14 /* ListEventsTableViewCell.swift */; };
+		C8ECBCB027B6C52E0010AA14 /* PersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECBCAF27B6C52E0010AA14 /* PersonInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,14 +39,17 @@
 		C83BEDF22798503200370AC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C83BEDF82798649300370AC7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8ADE24C27AC2C9D00D89070 /* AttendeesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesTableViewCell.swift; sourceTree = "<group>"; };
+		C8ADE24E27AD8A9700D89070 /* NamesThemesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesThemesTableViewCell.swift; sourceTree = "<group>"; };
 		C8B6FEA02799723B00CAB319 /* ListEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsViewController.swift; sourceTree = "<group>"; };
 		C8B6FEA22799727D00CAB319 /* EnterInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoViewController.swift; sourceTree = "<group>"; };
 		C8B6FEA4279972B300CAB319 /* AllInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllInfoViewController.swift; sourceTree = "<group>"; };
-		C8B6FEA62799731000CAB319 /* PersonInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoViewController.swift; sourceTree = "<group>"; };
 		C8B6FEA82799734100CAB319 /* AddThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThemesViewController.swift; sourceTree = "<group>"; };
 		C8B6FEAE2799762700CAB319 /* InfoEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoEvents.swift; sourceTree = "<group>"; };
 		C8B6FEB32799C18E00CAB319 /* Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capitalize.swift; sourceTree = "<group>"; };
 		C8B6FEB5279B002F00CAB319 /* SettingsRepisotory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepisotory.swift; sourceTree = "<group>"; };
+		C8C2B10F27BE475600C4AB29 /* ChangeDescriptionThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDescriptionThemeViewController.swift; sourceTree = "<group>"; };
+		C8ECBCAD27B425100010AA14 /* ListEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsTableViewCell.swift; sourceTree = "<group>"; };
+		C8ECBCAF27B6C52E0010AA14 /* PersonInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +98,9 @@
 				C8B6FEA02799723B00CAB319 /* ListEventsViewController.swift */,
 				C8B6FEA22799727D00CAB319 /* EnterInfoViewController.swift */,
 				C8B6FEA4279972B300CAB319 /* AllInfoViewController.swift */,
-				C8B6FEA62799731000CAB319 /* PersonInfoViewController.swift */,
+				C8ECBCAF27B6C52E0010AA14 /* PersonInfoViewController.swift */,
 				C8B6FEA82799734100CAB319 /* AddThemesViewController.swift */,
+				C8C2B10F27BE475600C4AB29 /* ChangeDescriptionThemeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -104,6 +111,8 @@
 				C83BEDF82798649300370AC7 /* LaunchScreen.storyboard */,
 				C83BEDEA2798502F00370AC7 /* Main.storyboard */,
 				C8ADE24C27AC2C9D00D89070 /* AttendeesTableViewCell.swift */,
+				C8ADE24E27AD8A9700D89070 /* NamesThemesTableViewCell.swift */,
+				C8ECBCAD27B425100010AA14 /* ListEventsTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -209,14 +218,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8B6FEB6279B002F00CAB319 /* SettingsRepisotory.swift in Sources */,
+				C8C2B11027BE475600C4AB29 /* ChangeDescriptionThemeViewController.swift in Sources */,
 				C8B6FEA5279972B300CAB319 /* AllInfoViewController.swift in Sources */,
+				C8ECBCAE27B425100010AA14 /* ListEventsTableViewCell.swift in Sources */,
 				C8B6FEA12799723B00CAB319 /* ListEventsViewController.swift in Sources */,
 				C8B6FEA92799734100CAB319 /* AddThemesViewController.swift in Sources */,
 				C83BEDE92798502F00370AC7 /* Document.swift in Sources */,
-				C8B6FEA72799731000CAB319 /* PersonInfoViewController.swift in Sources */,
+				C8ADE24F27AD8A9800D89070 /* NamesThemesTableViewCell.swift in Sources */,
 				C83BEDE72798502F00370AC7 /* DocumentViewController.swift in Sources */,
 				C8B6FEAF2799762700CAB319 /* InfoEvents.swift in Sources */,
 				C8B6FEA32799727D00CAB319 /* EnterInfoViewController.swift in Sources */,
+				C8ECBCB027B6C52E0010AA14 /* PersonInfoViewController.swift in Sources */,
 				C8B6FEB42799C18E00CAB319 /* Capitalize.swift in Sources */,
 				C83BEDE52798502F00370AC7 /* DocumentBrowserViewController.swift in Sources */,
 				C83BEDE32798502F00370AC7 /* AppDelegate.swift in Sources */,
@@ -361,6 +373,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 57HD766KQ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Event's/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -389,6 +402,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 57HD766KQ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Event's/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
