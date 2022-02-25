@@ -28,7 +28,14 @@ class AddThemesViewController: UIViewController {
         }
     }
     
+    func design() {
+        nameThemeTextField.layer.borderWidth = 0.5
+        nameThemeTextField.layer.borderColor = UIColor.white.cgColor
+        nameThemeTextField.layer.cornerRadius = 16
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        design()
 }
 }

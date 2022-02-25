@@ -16,6 +16,11 @@
 		C83BEDF92798649400370AC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83BEDF82798649300370AC7 /* LaunchScreen.storyboard */; };
 		C8ADE24D27AC2C9E00D89070 /* AttendeesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ADE24C27AC2C9D00D89070 /* AttendeesTableViewCell.swift */; };
 		C8ADE24F27AD8A9800D89070 /* NamesThemesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ADE24E27AD8A9700D89070 /* NamesThemesTableViewCell.swift */; };
+		C8AEE41027BFA4510041AD4E /* gungsuh.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C8AEE40F27BFA4510041AD4E /* gungsuh.ttc */; };
+		C8AEE41427C63BB40041AD4E /* Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8AEE41227C63BB40041AD4E /* Events.xcdatamodeld */; };
+		C8AEE41627C63BDE0041AD4E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AEE41527C63BDE0041AD4E /* CoreDataStack.swift */; };
+		C8AEE41827C63C3A0041AD4E /* EventsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AEE41727C63C3A0041AD4E /* EventsEntity.swift */; };
+		C8AEE41A27C644F20041AD4E /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AEE41927C644F10041AD4E /* Events.swift */; };
 		C8B6FEA12799723B00CAB319 /* ListEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA02799723B00CAB319 /* ListEventsViewController.swift */; };
 		C8B6FEA32799727D00CAB319 /* EnterInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA22799727D00CAB319 /* EnterInfoViewController.swift */; };
 		C8B6FEA5279972B300CAB319 /* AllInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B6FEA4279972B300CAB319 /* AllInfoViewController.swift */; };
@@ -40,6 +45,11 @@
 		C83BEDF82798649300370AC7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8ADE24C27AC2C9D00D89070 /* AttendeesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesTableViewCell.swift; sourceTree = "<group>"; };
 		C8ADE24E27AD8A9700D89070 /* NamesThemesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesThemesTableViewCell.swift; sourceTree = "<group>"; };
+		C8AEE40F27BFA4510041AD4E /* gungsuh.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = gungsuh.ttc; sourceTree = "<group>"; };
+		C8AEE41327C63BB40041AD4E /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
+		C8AEE41527C63BDE0041AD4E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		C8AEE41727C63C3A0041AD4E /* EventsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsEntity.swift; sourceTree = "<group>"; };
+		C8AEE41927C644F10041AD4E /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		C8B6FEA02799723B00CAB319 /* ListEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsViewController.swift; sourceTree = "<group>"; };
 		C8B6FEA22799727D00CAB319 /* EnterInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoViewController.swift; sourceTree = "<group>"; };
 		C8B6FEA4279972B300CAB319 /* AllInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllInfoViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +102,16 @@
 			path = "Event's";
 			sourceTree = "<group>";
 		};
+		C8AEE41127C63B8B0041AD4E /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				C8AEE41227C63BB40041AD4E /* Events.xcdatamodeld */,
+				C8AEE41527C63BDE0041AD4E /* CoreDataStack.swift */,
+				C8AEE41727C63C3A0041AD4E /* EventsEntity.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		C8B6FEAA2799757300CAB319 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +140,9 @@
 		C8B6FEAC2799758C00CAB319 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C8AEE41127C63B8B0041AD4E /* Core Data */,
 				C8B6FEAE2799762700CAB319 /* InfoEvents.swift */,
+				C8AEE41927C644F10041AD4E /* Events.swift */,
 				C8B6FEB5279B002F00CAB319 /* SettingsRepisotory.swift */,
 			);
 			path = Model;
@@ -133,6 +155,7 @@
 				C83BEDE42798502F00370AC7 /* DocumentBrowserViewController.swift */,
 				C83BEDE22798502F00370AC7 /* AppDelegate.swift */,
 				C83BEDE82798502F00370AC7 /* Document.swift */,
+				C8AEE40F27BFA4510041AD4E /* gungsuh.ttc */,
 				C83BEDED2798503200370AC7 /* Assets.xcassets */,
 			);
 			path = "Supporting files";
@@ -205,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83BEDF92798649400370AC7 /* LaunchScreen.storyboard in Resources */,
+				C8AEE41027BFA4510041AD4E /* gungsuh.ttc in Resources */,
 				C83BEDEE2798503200370AC7 /* Assets.xcassets in Resources */,
 				C83BEDEC2798502F00370AC7 /* Main.storyboard in Resources */,
 			);
@@ -220,14 +244,18 @@
 				C8B6FEB6279B002F00CAB319 /* SettingsRepisotory.swift in Sources */,
 				C8C2B11027BE475600C4AB29 /* ChangeDescriptionThemeViewController.swift in Sources */,
 				C8B6FEA5279972B300CAB319 /* AllInfoViewController.swift in Sources */,
+				C8AEE41627C63BDE0041AD4E /* CoreDataStack.swift in Sources */,
+				C8AEE41A27C644F20041AD4E /* Events.swift in Sources */,
 				C8ECBCAE27B425100010AA14 /* ListEventsTableViewCell.swift in Sources */,
 				C8B6FEA12799723B00CAB319 /* ListEventsViewController.swift in Sources */,
 				C8B6FEA92799734100CAB319 /* AddThemesViewController.swift in Sources */,
+				C8AEE41827C63C3A0041AD4E /* EventsEntity.swift in Sources */,
 				C83BEDE92798502F00370AC7 /* Document.swift in Sources */,
 				C8ADE24F27AD8A9800D89070 /* NamesThemesTableViewCell.swift in Sources */,
 				C83BEDE72798502F00370AC7 /* DocumentViewController.swift in Sources */,
 				C8B6FEAF2799762700CAB319 /* InfoEvents.swift in Sources */,
 				C8B6FEA32799727D00CAB319 /* EnterInfoViewController.swift in Sources */,
+				C8AEE41427C63BB40041AD4E /* Events.xcdatamodeld in Sources */,
 				C8ECBCB027B6C52E0010AA14 /* PersonInfoViewController.swift in Sources */,
 				C8B6FEB42799C18E00CAB319 /* Capitalize.swift in Sources */,
 				C83BEDE52798502F00370AC7 /* DocumentBrowserViewController.swift in Sources */,
@@ -446,6 +474,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C8AEE41227C63BB40041AD4E /* Events.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C8AEE41327C63BB40041AD4E /* Events.xcdatamodel */,
+			);
+			currentVersion = C8AEE41327C63BB40041AD4E /* Events.xcdatamodel */;
+			path = Events.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C83BEDD72798502F00370AC7 /* Project object */;
 }

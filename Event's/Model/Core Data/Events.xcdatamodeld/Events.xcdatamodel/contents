@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="EventsEntity" representedClassName=".EventsEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="nameEvents" optional="YES" attributeType="String"/>
+        <attribute name="numberDays" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="EventsEntity" positionX="-63" positionY="-18" width="128" height="89"/>
+    </elements>
 </model>

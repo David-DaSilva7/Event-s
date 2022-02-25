@@ -13,6 +13,10 @@
 			</array>
 		</dict>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>gungsuh.ttc</string>
+	</array>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This application needs to save your photos in your library</string>
 	<key>NSPhotoLibraryUsageDescription</key>
