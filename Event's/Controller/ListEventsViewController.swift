@@ -8,12 +8,29 @@
 import UIKit
 
 class ListEventsViewController: UIViewController {
+    
+    private var events = EventsEntity.all()
 
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        prepareView()
+    }
+    
+    private func prepareView() {
+        events = EventsEntity.all()
         tableView.reloadData()
+        if events.count > 0 {
+            tableView.isHidden = false
+        } else {
+            tableView.isHidden = true
+        }
     }
 }
 
@@ -27,7 +44,7 @@ class ListEventsViewController: UIViewController {
         
         //        Nombres de cellules
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 5
+            return events.count
         }
         
         //    Contenu dans la cellule
@@ -37,7 +54,7 @@ class ListEventsViewController: UIViewController {
                                                                     return UITableViewCell()
             }
 
-            cell.configure(nameEvents: SettingsRepository.nameEvents , numbersDays: SettingsRepository.numberDays, date: SettingsRepository.date)
+            cell.configure(event: events[indexPath.row])
             
             return cell
         }

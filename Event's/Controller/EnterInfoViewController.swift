@@ -9,6 +9,7 @@ import UIKit
 
 class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
+    var events: Events?
     static var names: [String] = []
     
     @IBOutlet weak var nameEventsTextField: UITextField!
@@ -36,12 +37,19 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     @IBAction func goToAllInfo(_ sender: Any) {
-        let nameEvents = nameEventsTextField.text
-        SettingsRepository.nameEvents = nameEvents ?? ""
         
+//        nameEventsTextField.text = events?.nameEvents
+//        
+//        if let events = events {
+//            EventsEntity.addEventsToSave(events)
+//        }
+     
+        let nameEvents = nameEventsTextField.text
+
+        SettingsRepository.nameEvents = nameEvents ?? ""
+
         let nameAttendees = EnterInfoViewController.names
         SettingsRepository.attendees = nameAttendees
-        print("\(EnterInfoViewController.names)")
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -53,7 +61,9 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         let date = formatter.string(from: datePicker.date)
-        SettingsRepository.date = date
+//        events?.date = date
+        SettingsRepository.date = date 
+
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -62,13 +72,18 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func design() {
-        addName.layer.cornerRadius = 17
+        addName.layer.cornerRadius = 9
         nameNewAttendeesTextField.layer.borderWidth = 0.5
         nameNewAttendeesTextField.layer.cornerRadius = 16
+        nameNewAttendeesTextField.layer.borderColor = UIColor.white.cgColor
         nameEventsTextField.layer.borderWidth = 0.5
         nameEventsTextField.layer.cornerRadius = 16
-        clearAttendees.layer.cornerRadius = 16
+        nameEventsTextField.layer.borderColor = UIColor.white.cgColor
+        clearAttendees.layer.cornerRadius = 9
         buttonContinue.layer.cornerRadius = 16
+        
+     
+    
     }
     
     override func viewDidLoad() {
@@ -96,7 +111,8 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selection = InfoEvents.numberDaysArray[row]
         let numberDays = selection
-        SettingsRepository.numberDays = numberDays 
+//        events?.numberDays = numberDays
+        SettingsRepository.numberDays = numberDays
         print ("--")
         print("ligne : ", row)
         print ("colonne : ", component)

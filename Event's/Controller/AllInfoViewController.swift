@@ -12,6 +12,7 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     private let segueIdentifier = "segueToPersonInfo"
     var selectedName = ""
+    var events = EventsEntity.all()
     
     @IBOutlet weak var addPictureButton: UIButton!
     @IBOutlet weak var nameEventsLabel: UILabel!
@@ -23,6 +24,11 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var buttonAddAttendees: UIButton!
     @IBOutlet weak var buttonContinue: UIButton!
     
+    
+    @IBAction func buttonContinue(_ sender: Any) {
+        
+        print("Bouton appuyé")
+    }
     
     @IBAction func buttonLibrary(_ sender: UIButton) {
 //        imagePicker.sourceType = .photoLibrary
@@ -57,14 +63,19 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         design()
-        nameEventsLabel.text = SettingsRepository.nameEvents.capitalizingFirstLetter()
+        nameEventsLabel.text = SettingsRepository.nameEvents
         numberDaysLabel.text = SettingsRepository.numberDays
         date.text = SettingsRepository.date
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        attendeesTableView.reloadData()
+//        events = EventsEntity.all()
+//        attendeesTableView.reloadData()
+//        var event = Events(date: date.text ?? "", numberDays: numberDaysLabel.text ?? "", nameEvents: nameEventsLabel.text ?? "")
+        
+    
+        
     }
     
     func design() {
