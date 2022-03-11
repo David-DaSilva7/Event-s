@@ -37,7 +37,7 @@ class PersonInfoViewController: UIViewController {
     }
     
     func design(){
-        addTheme.layer.cornerRadius = 17
+        addTheme.layer.cornerRadius = 9
         viewName.layer.cornerRadius = 16
     }
     

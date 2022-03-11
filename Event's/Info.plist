@@ -18,9 +18,9 @@
 		<string>gungsuh.ttc</string>
 	</array>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This application needs to save your photos in your library</string>
+	<string>Please allow access</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This application needs to save your photos in your library</string>
+	<string>Please allow access</string>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
