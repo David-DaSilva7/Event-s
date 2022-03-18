@@ -7,9 +7,9 @@
 
 import UIKit
 
-class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
-    var events: Events?
+    var event: Event?
     static var names: [String] = []
     
     @IBOutlet weak var nameEventsTextField: UITextField!
@@ -37,19 +37,22 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     @IBAction func goToAllInfo(_ sender: Any) {
-        
 //        nameEventsTextField.text = events?.nameEvents
-//        
+//        nameEventsTextField.text = events?.nameEvents
 //        if let events = events {
 //            EventsEntity.addEventsToSave(events)
 //        }
-     
-        let nameEvents = nameEventsTextField.text
-
-        SettingsRepository.nameEvents = nameEvents ?? ""
-
-        let nameAttendees = EnterInfoViewController.names
-        SettingsRepository.attendees = nameAttendees
+        event?.name = nameEventsTextField.text
+        event?.attendees = EnterInfoViewController.names
+        print("\(String(describing: event?.name))")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "allInfoVCSegue" {
+            if let allInfoVC = segue.destination as? AllInfoViewController {
+                allInfoVC.event = event
+            }
+        }
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -62,7 +65,7 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         formatter.dateFormat = "dd/MM/yyyy"
         let date = formatter.string(from: datePicker.date)
 //        events?.date = date
-        SettingsRepository.date = date 
+        SettingsRepository.date = date
 
     }
     
@@ -75,22 +78,18 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         addName.layer.cornerRadius = 9
         nameNewAttendeesTextField.layer.borderWidth = 0.5
         nameNewAttendeesTextField.layer.cornerRadius = 16
-        nameNewAttendeesTextField.layer.borderColor = UIColor.white.cgColor
+        nameNewAttendeesTextField.layer.borderColor = UIColor.black.cgColor
         nameEventsTextField.layer.borderWidth = 0.5
         nameEventsTextField.layer.cornerRadius = 16
-        nameEventsTextField.layer.borderColor = UIColor.white.cgColor
+        nameEventsTextField.layer.borderColor = UIColor.black.cgColor
         clearAttendees.layer.cornerRadius = 9
         buttonContinue.layer.cornerRadius = 16
-        
-     
-    
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         design()
     }
-    
     
     // nombres de colonnes
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -104,7 +103,11 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     // Contenu dans les lignes
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return InfoEvents.numberDaysArray[row]
+        if InfoEvents.numberDaysArray[row] == 1 {
+            return "\(InfoEvents.numberDaysArray[row]) jour"
+        } else {
+            return "\(InfoEvents.numberDaysArray[row]) jours"
+        }
     }
     
     // Contenu de la ligne séléctionné 
@@ -112,7 +115,7 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         let selection = InfoEvents.numberDaysArray[row]
         let numberDays = selection
 //        events?.numberDays = numberDays
-        SettingsRepository.numberDays = numberDays
+//        SettingsRepository.numberDays = numberDays
         print ("--")
         print("ligne : ", row)
         print ("colonne : ", component)

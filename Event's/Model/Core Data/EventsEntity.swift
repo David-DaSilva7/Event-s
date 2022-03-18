@@ -11,20 +11,24 @@ import CoreData
 class EventsEntity: NSManagedObject {
     
     // Retrieve all recipes stored in Core Data
-    static func all() -> [Events] {
+    static func all() -> [Event] {
         let request: NSFetchRequest<EventsEntity> = EventsEntity.fetchRequest()
         guard let saveEvents = try? CoreDataStack.sharedInstance.viewContext.fetch(request) else {
             return []
         }
-        var events = [Events]()
+        var events = [Event]()
         for save in saveEvents {
-            if let name = save.nameEvents,
-               let numberDays = save.numberDays,
-               let date = save.date {
-                let event = Events(
+            if let name = save.name,
+               let date = save.date,
+               let days = save.days {
+                
+                let event = Event(
+                    name: name,
+                    numberOfDays: Int16(save.numberOfDays),
+                    attendees: save.attendees as! [String],
                     date: date,
-                    numberDays: numberDays,
-                    nameEvents: name)
+//                    image: save.image,
+                    days: days as! [Int : String])
                 events.append(event)
             }
         }
@@ -32,11 +36,14 @@ class EventsEntity: NSManagedObject {
     }
     
     // Save recipe in Core Data
-    static func addEventsToSave(_ event: Events) {
+    static func addEventsToSave(_ event: Event) {
         let saveEvent = EventsEntity(context: CoreDataStack.sharedInstance.viewContext)
-        saveEvent.nameEvents = event.nameEvents
-        saveEvent.numberDays = event.numberDays
+        saveEvent.name = event.name
+        saveEvent.numberOfDays = event.numberOfDays!
         saveEvent.date = event.date
+        saveEvent.days = event.days as NSObject
+//        saveEvent.image = event.image
+        saveEvent.attendees = event.attendees as NSObject
         saveContext()
     }
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ListEventsViewController: UIViewController {
     
@@ -26,11 +27,6 @@ class ListEventsViewController: UIViewController {
     private func prepareView() {
         events = EventsEntity.all()
         tableView.reloadData()
-        if events.count > 0 {
-            tableView.isHidden = false
-        } else {
-            tableView.isHidden = true
-        }
     }
 }
 
@@ -54,7 +50,7 @@ class ListEventsViewController: UIViewController {
                                                                     return UITableViewCell()
             }
 
-            cell.configure(event: events[indexPath.row])
+            cell.configure(events: events[indexPath.row])
             
             return cell
         }

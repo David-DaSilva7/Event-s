@@ -27,7 +27,7 @@ class ChangeDescriptionThemeViewController: UIViewController {
     func design() {
         viewName.layer.cornerRadius = 16
         registerButton.layer.cornerRadius = 16
-        descriptionTextView.layer.borderColor = UIColor.white.cgColor
+        descriptionTextView.layer.borderColor = UIColor.black.cgColor
         descriptionTextView.layer.borderWidth = 0.5
         descriptionTextView.layer.cornerRadius = 16
     }

@@ -10,9 +10,11 @@ import UIKit
 class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     
+    
     private let segueIdentifier = "segueToPersonInfo"
     var selectedName = ""
     var events = EventsEntity.all()
+    var event: Event?
     
     @IBOutlet weak var addPictureButton: UIButton!
     @IBOutlet weak var nameEventsLabel: UILabel!
@@ -31,9 +33,6 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     @IBAction func buttonLibrary(_ sender: UIButton) {
-        //        imagePicker.sourceType = .photoLibrary
-        //        imagePicker.allowsEditing = true
-        //        present(imagePicker, animated: true, completion: nil)
         let image = UIImagePickerController()
         image.delegate = self
         image.sourceType = .photoLibrary
@@ -48,33 +47,21 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         dayOrganizationTextView.resignFirstResponder()
     }
     
-//    private func imagePickerControllerDidCancel(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-//        {
-//            imageEvents.image = image
-//        } else {
-//            // error message
-//        }
-//        self.dismiss(animated: true, completion: nil)
-//    }
-    
-    //    fileprivate let imagePicker = UIImagePickerController()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         design()
-        nameEventsLabel.text = SettingsRepository.nameEvents
+        nameEventsLabel.text = event?.name
         if SettingsRepository.numberDays == "1"{
             numberDaysLabel.text = "\(SettingsRepository.numberDays) jour"
         } else {
             numberDaysLabel.text = "\(SettingsRepository.numberDays) jours"
         }
-//        numberDaysLabel.text = SettingsRepository.numberDays
         date.text = SettingsRepository.date
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("\(String(describing: event?.name))")
         //        events = EventsEntity.all()
         //        attendeesTableView.reloadData()
         //        var event = Events(date: date.text ?? "", numberDays: numberDaysLabel.text ?? "", nameEvents: nameEventsLabel.text ?? "")
@@ -87,7 +74,7 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         addPictureButton.layer.cornerRadius = 17
         buttonAddAttendees.layer.cornerRadius = 9
         buttonContinue.layer.cornerRadius = 16
-        dayOrganizationTextView.layer.borderColor = UIColor.white.cgColor
+        dayOrganizationTextView.layer.borderColor = UIColor.black.cgColor
         dayOrganizationTextView.layer.borderWidth = 0.5
         dayOrganizationTextView.layer.cornerRadius = 16
     }
@@ -98,15 +85,12 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return InfoEvents.numberDaysArray.firstIndex(of: SettingsRepository.numberDays)! + 1
+//        return InfoEvents.numberDaysArray.firstIndex(of: SettingsRepository.numberDays)! + 1
+        return 5
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if InfoEvents.numberDaysArray[row] == "1" {
-            return "\(InfoEvents.numberDaysArray[row]) jour"
-        } else {
-            return "\(InfoEvents.numberDaysArray[row]) jours"
-        }
+            return "Jour \(InfoEvents.numberDaysArray[row])"
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -122,25 +106,6 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         //            dayOrganizationTextView.text = "Piscine"
         //        }
     }
-    
-    
-    // apply selected image on button
-    //    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    //
-    //        addPictureButton.setImage(nil, for: .normal)
-    //        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-    //            if  addPictureButton.backgroundImage(for: .normal) == nil {
-    //                addPictureButton.setBackgroundImage(image, for: .normal)
-    //            } else {
-    //                if addPictureButton.imageView?.description != image.description {
-    //                    addPictureButton.setBackgroundImage(image, for: .normal)
-    //                }
-    //            }
-    //            imagePicker.dismiss(animated: true, completion: nil)
-    //        }
-    //    }
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
             let personInfoVC = segue.destination as! PersonInfoViewController

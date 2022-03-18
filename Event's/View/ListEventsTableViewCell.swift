@@ -9,7 +9,7 @@ import UIKit
 
 class ListEventsTableViewCell: UITableViewCell {
 
-    var event: Events?
+    var event: Event?
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var numbersDaysLabel: UILabel!
@@ -24,9 +24,9 @@ class ListEventsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(event: Events) {
-        self.nameEventsLabel.text = event.nameEvents
-        self.numbersDaysLabel.text = event.numberDays
-        self.dateLabel.text = event.date
+    func configure(events: Event) {
+        self.nameEventsLabel.text = event?.name
+        self.numbersDaysLabel.text = "\(String(describing: event?.numberOfDays))"
+        self.dateLabel.text = events.date
     }
 }
