@@ -9,8 +9,12 @@ import UIKit
 
 class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
-    var event: Event?
-    static var names: [String] = []
+    var event = Event(name: "",
+                      numberOfDays: 0,
+                      attendees: [],
+                      date: "",
+                      days: [:], themes: [])
+    var names: [String] = []
     
     @IBOutlet weak var nameEventsTextField: UITextField!
     @IBOutlet weak var nameAttendeesTextView: UITextView!
@@ -24,15 +28,15 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBAction func unwindToEnterInfo(segue:UIStoryboardSegue) { }
     
     @IBAction func clearAttendees(_ sender: Any) {
-        EnterInfoViewController.names.removeAll()
+        names.removeAll()
         nameAttendeesTextView.text.removeAll()
     }
     
     @IBAction func addNames(_ sender: Any) {
         if let namesAdd = nameNewAttendeesTextField.text, !namesAdd.isEmpty {
-            EnterInfoViewController.names.append(namesAdd.capitalizingFirstLetter())
+            names.append(namesAdd.capitalizingFirstLetter())
             nameNewAttendeesTextField.text?.removeAll()
-            nameAttendeesTextView.text = self.get(EnterInfoViewController.names)
+            nameAttendeesTextView.text = self.get(names)
         }
     }
     
@@ -42,9 +46,9 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
 //        if let events = events {
 //            EventsEntity.addEventsToSave(events)
 //        }
-        event?.name = nameEventsTextField.text
-        event?.attendees = EnterInfoViewController.names
-        print("\(String(describing: event?.name))")
+        event.name = nameEventsTextField.text
+        event.attendees = names
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,7 +69,7 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         formatter.dateFormat = "dd/MM/yyyy"
         let date = formatter.string(from: datePicker.date)
 //        events?.date = date
-        SettingsRepository.date = date
+        event.date = date
 
     }
     
@@ -113,7 +117,7 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     // Contenu de la ligne séléctionné 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selection = InfoEvents.numberDaysArray[row]
-        let numberDays = selection
+        event.numberOfDays = Int16(selection)
 //        events?.numberDays = numberDays
 //        SettingsRepository.numberDays = numberDays
         print ("--")

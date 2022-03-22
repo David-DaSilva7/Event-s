@@ -9,6 +9,8 @@ import UIKit
 
 class AttendeesTableViewCell: UITableViewCell {
 
+    var cellDelegate: YourCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,15 +23,23 @@ class AttendeesTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBOutlet weak var namesAttendeesLabel: UILabel!
-    @IBOutlet weak var viewDesign: UIView!
+   
+    @IBOutlet weak var namesAttendees: UIButton!
+    
+    @IBAction func buttonNames(_ sender: UIButton) {
+        cellDelegate?.didPressButton(sender.tag)
+    }
     
     
     func configure(name: String) {
-        namesAttendeesLabel.text = name
+        namesAttendees.setTitle("\(name)", for: .normal)
     }
     func design() {
-        viewDesign.layer.cornerRadius = 16
+        namesAttendees.layer.cornerRadius = 16
 //        viewDesign.layer.backgroundColor = InfoEvents.randomColor
     }
+}
+
+protocol YourCellDelegate : AnyObject {
+    func didPressButton(_ tag: Int)
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, YourCellDelegate {
     
     
     
@@ -50,13 +50,15 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         design()
-        nameEventsLabel.text = event?.name
-        if SettingsRepository.numberDays == "1"{
-            numberDaysLabel.text = "\(SettingsRepository.numberDays) jour"
-        } else {
-            numberDaysLabel.text = "\(SettingsRepository.numberDays) jours"
+        if let event = event {
+            nameEventsLabel.text = event.name
+            if event.numberOfDays == 1 {
+                numberDaysLabel.text = "\(event.numberOfDays) jour"
+            } else {
+                numberDaysLabel.text = "\(event.numberOfDays) jours"
+            }
+            date.text = event.date
         }
-        date.text = SettingsRepository.date
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +70,20 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         
         
+    }
+    
+    func didPressButton(_ tag: Int) {
+         print("I have pressed a button with a tag: \(tag)")
+        selectedName = "\(String(describing: event?.attendees[tag]))"
+        print("\(String(describing: event?.attendees[tag]))")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueIdentifier {
+            let personInfoVC = segue.destination as! PersonInfoViewController
+            personInfoVC.nameAttendee = selectedName
+            personInfoVC.event = event
+        }
     }
     
     func design() {
@@ -85,8 +101,7 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return InfoEvents.numberDaysArray.firstIndex(of: SettingsRepository.numberDays)! + 1
-        return 5
+        return Int(event?.numberOfDays ?? 1 - 1)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -106,12 +121,6 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         //            dayOrganizationTextView.text = "Piscine"
         //        }
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == segueIdentifier {
-            let personInfoVC = segue.destination as! PersonInfoViewController
-            personInfoVC.nameAttendee = selectedName
-        }
-    }
 }
 
 // MARK: - TableView DataSource extension
@@ -124,7 +133,7 @@ extension AllInfoViewController: UITableViewDataSource {
     
     //        Nombres de cellules
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SettingsRepository.attendees.count
+        return event?.attendees.count ?? 0
     }
     
     //    Contenu dans la cellule
@@ -133,8 +142,11 @@ extension AllInfoViewController: UITableViewDataSource {
                                                        for: indexPath) as? AttendeesTableViewCell else {
             return UITableViewCell()
         }
+        cell.cellDelegate = self
+        cell.configure(name: event?.attendees[indexPath.row] ?? "")
+        cell.namesAttendees.tag = indexPath.row
         
-        cell.configure(name: SettingsRepository.attendees[indexPath.row])
+        
         
         return cell
     }
@@ -142,21 +154,14 @@ extension AllInfoViewController: UITableViewDataSource {
 // MARK: - TableView Delegate extension
 extension AllInfoViewController: UITableViewDelegate {
     // Lorsqu'on appui sur une cellue
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedName = SettingsRepository.attendees[indexPath.row]
-        //        let nameAttendee = SettingsRepository.attendees[indexPath.row]
-        //        SettingsRepository.attendee = nameAttendee
-        print("J'AI APPUYÉ")
-        performSegue(withIdentifier: segueIdentifier, sender: self)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        selectedName = event?.attendees[indexPath.row] ?? ""
+//        performSegue(withIdentifier: segueIdentifier, sender: self)
+//    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            //            SettingsRepository.removeName(at: indexPath.row)
-            //            enterInfoViewController.names.remove(at: indexPath.row)
-            //            enterInfoViewController.removeName(indexName: indexPath.row)
-            SettingsRepository.attendees.remove(at: indexPath.row)
-            //            EnterInfoViewController.names.remove(at: indexPath.row)
+            event?.attendees.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

@@ -11,9 +11,10 @@ import UIKit
 // MARK: - Structure
 struct Event {
     var name: String?
-    var numberOfDays: Int16?
+    var numberOfDays: Int16 = 1
     var attendees: [String]  = []
     var date: String?
 //    var image: UIImage
     var days: [Int: String]
+    var themes: [String]
 }

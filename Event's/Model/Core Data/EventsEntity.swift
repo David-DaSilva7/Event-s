@@ -28,7 +28,8 @@ class EventsEntity: NSManagedObject {
                     attendees: save.attendees as! [String],
                     date: date,
 //                    image: save.image,
-                    days: days as! [Int : String])
+                    days: days as! [Int : String],
+                    themes: save.themes as! [String])
                 events.append(event)
             }
         }
@@ -39,9 +40,10 @@ class EventsEntity: NSManagedObject {
     static func addEventsToSave(_ event: Event) {
         let saveEvent = EventsEntity(context: CoreDataStack.sharedInstance.viewContext)
         saveEvent.name = event.name
-        saveEvent.numberOfDays = event.numberOfDays!
-        saveEvent.date = event.date
+        saveEvent.numberOfDays = event.numberOfDays
+        saveEvent.date = event.date as NSObject? as? String
         saveEvent.days = event.days as NSObject
+        saveEvent.themes = event.themes as NSObject
 //        saveEvent.image = event.image
         saveEvent.attendees = event.attendees as NSObject
         saveContext()
