@@ -13,7 +13,7 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                       numberOfDays: 0,
                       attendees: [],
                       date: "",
-                      days: [:], themes: [])
+                      days: [:], themes: [:])
     var names: [String] = []
     
     @IBOutlet weak var nameEventsTextField: UITextField!
@@ -65,9 +65,16 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     @IBAction func dateSelectedFromDatePicker(_ sender: Any) {
+        let calendar = Calendar(identifier: .gregorian)
+        let currentDate = Date()
+        var components = DateComponents()
+        components.day = -0
+        components.calendar = calendar
+        let minDate = calendar.date(byAdding: components, to: currentDate)!
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         let date = formatter.string(from: datePicker.date)
+        self.datePicker.minimumDate = minDate;
 //        events?.date = date
         event.date = date
 
