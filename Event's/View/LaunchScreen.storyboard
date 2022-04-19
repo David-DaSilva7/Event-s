@@ -20,32 +20,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Event" translatesAutoresizingMaskIntoConstraints="NO" id="oJE-4D-dCD">
-                                <rect key="frame" x="0.0" y="174" width="390" height="284"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event's" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Lll-Wt-QMl">
-                                <rect key="frame" x="115" y="494" width="160" height="40"/>
+                                <rect key="frame" x="115" y="508" width="160" height="40"/>
                                 <fontDescription key="fontDescription" name="Gungsuh" family="Gungsuh" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Event" translatesAutoresizingMaskIntoConstraints="NO" id="zNM-sh-Ium">
+                                <rect key="frame" x="38" y="154" width="314" height="314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zNM-sh-Ium" secondAttribute="height" multiplier="1:1" id="Uwe-yM-Eu1"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="oJE-4D-dCD" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="7zZ-qp-F10"/>
                             <constraint firstItem="Lll-Wt-QMl" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="115" id="FWg-u8-715"/>
-                            <constraint firstItem="Lll-Wt-QMl" firstAttribute="top" secondItem="oJE-4D-dCD" secondAttribute="bottom" constant="36" id="VEg-7P-Tf2"/>
-                            <constraint firstItem="oJE-4D-dCD" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="130" id="ft4-1x-vxx"/>
-                            <constraint firstItem="oJE-4D-dCD" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="vi7-zw-i8I"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="oJE-4D-dCD" secondAttribute="bottom" constant="352" id="xKz-gl-Cq9"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="zNM-sh-Ium" secondAttribute="trailing" constant="38" id="IEC-9Q-3BD"/>
+                            <constraint firstItem="zNM-sh-Ium" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="38" id="Nxn-dp-GdO"/>
+                            <constraint firstItem="Lll-Wt-QMl" firstAttribute="top" secondItem="zNM-sh-Ium" secondAttribute="bottom" constant="40" id="On6-Zv-K1S"/>
+                            <constraint firstItem="zNM-sh-Ium" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="110" id="uv2-ET-s8N"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="Lll-Wt-QMl" secondAttribute="trailing" constant="115" id="y6j-7R-o5x"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
