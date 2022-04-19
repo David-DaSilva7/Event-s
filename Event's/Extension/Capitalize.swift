@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Extension to capitalize the first letter of a word
 extension String {
     func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()
