@@ -9,24 +9,19 @@ import UIKit
 
 class NamesThemesTableViewCell: UITableViewCell {
 
+    // MARK: - Outlets
     @IBOutlet weak var themeName: UILabel!
     @IBOutlet weak var viewTheme: UIView!
     
-    
+    // MARK: - Functions
+    // Prepares the receiver for service after it has been loaded from an Interface Builder archive, or nib file.
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         viewTheme.layer.cornerRadius = 16
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
+    // Configure the different elements of the cell
     func configure(nameTheme: String) {
         themeName.text = nameTheme
     }
-
 }

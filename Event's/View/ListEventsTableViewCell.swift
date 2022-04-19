@@ -8,25 +8,18 @@
 import UIKit
 
 class ListEventsTableViewCell: UITableViewCell {
-
-    var event: Event?
     
+    // MARK: - Outlets
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var numbersDaysLabel: UILabel!
     @IBOutlet weak var nameEventsLabel: UILabel!
+    @IBOutlet weak var picture: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+    // MARK: - Functions
+    // Configure the different elements of the cell
     func configure(events: Event) {
-        self.nameEventsLabel.text = event?.name
-        self.numbersDaysLabel.text = "\(String(describing: event?.numberOfDays))"
+        self.nameEventsLabel.text = events.name?.capitalizingFirstLetter()
+        self.numbersDaysLabel.text = "\(events.numberOfDays)"
         self.dateLabel.text = events.date
     }
 }
