@@ -19,7 +19,13 @@ class ListEventsTableViewCell: UITableViewCell {
     // Configure the different elements of the cell
     func configure(events: Event) {
         self.nameEventsLabel.text = events.name?.capitalizingFirstLetter()
-        self.numbersDaysLabel.text = "\(events.numberOfDays)"
+        if  events.numberOfDays == 1 {
+            self.numbersDaysLabel.text = "\(events.numberOfDays) jour"
+        } else {
+            self.numbersDaysLabel.text = "\(events.numberOfDays) jours"
+        }
+//        self.numbersDaysLabel.text = "\(events.numberOfDays) jours"
         self.dateLabel.text = events.date
+        self.picture.image = UIImage(data: events.imageEvent)
     }
 }
