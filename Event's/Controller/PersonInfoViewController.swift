@@ -11,7 +11,7 @@ class PersonInfoViewController: UIViewController {
     
     // MARK: - Properties
     //    private var events = EventsEntity.all()
-    var event: Event?
+//    var event: Event?
     private let segueIdentifier = "segueToChangeDescriptionTheme"
     private let segueIdentifier2 = "segueToAddThemes"
     private var selectedNameTheme = ""
@@ -23,6 +23,7 @@ class PersonInfoViewController: UIViewController {
     @IBOutlet weak var addTheme: UIButton!
     @IBOutlet weak var themesTableView: UITableView!
     
+    
     // MARK: - Actions
     @IBAction func unwindToPersonInfo(segue:UIStoryboardSegue) { }
     
@@ -31,12 +32,15 @@ class PersonInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         themesTableView.reloadData()
+        print(AllInfoViewController.event?.themes ?? [:])
         //        prepareView()
     }
     
     // Called after the controller's view is loaded into memory.
     override func viewDidLoad() {
         super.viewDidLoad()
+        ListEventsViewController.setTitleNav()
+        navigationController?.navigationBar.topItem?.titleView = ListEventsViewController.titleNav
         design()
         nameLabel.text = nameAttendee
     }
@@ -45,13 +49,13 @@ class PersonInfoViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
             let changeDescriptionThemeVC = segue.destination as! ChangeDescriptionThemeViewController
-            changeDescriptionThemeVC.event = event
+//            changeDescriptionThemeVC.event = event
             changeDescriptionThemeVC.themeName = selectedNameTheme
-            changeDescriptionThemeVC.delegate = self
+//            changeDescriptionThemeVC.delegate = self
         } else if segue.identifier == segueIdentifier2 {
             let addThemesVC = segue.destination as! AddThemesViewController
-            addThemesVC.event = event
-            addThemesVC.delegate = self
+//            addThemesVC.event = event
+//            addThemesVC.delegate = self
         }
     }
     
@@ -71,7 +75,7 @@ extension PersonInfoViewController: UITableViewDataSource {
     
     // Cell numbers
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return event?.themes.count ?? 0
+        return AllInfoViewController.event?.themes.count ?? 0
     }
     
     // Content in the cell
@@ -79,7 +83,7 @@ extension PersonInfoViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NamesThemesCell",
                                                        for: indexPath) as? NamesThemesTableViewCell else { return UITableViewCell()
         }
-        if let event = event {
+        if let event = AllInfoViewController.event {
             let themes = event.themes
             let key   = Array(themes.keys)[indexPath.row]
             cell.configure(nameTheme: "\(key)" )
@@ -93,9 +97,8 @@ extension PersonInfoViewController: UITableViewDataSource {
 extension PersonInfoViewController: UITableViewDelegate {
     // Design of the different elements// Action when you press on a cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let event = event {
-            let themes = event.themes
-            let key = Array(themes.keys)[indexPath.row]
+        if AllInfoViewController.event != nil {
+            let key = Array(AllInfoViewController.event!.themes.keys)[indexPath.row]
             //            let value = Array(themes.values)[indexPath.row]
             selectedNameTheme = "\(key)"
             //            selectedDescriptionTheme = "\(value)"
@@ -107,22 +110,19 @@ extension PersonInfoViewController: UITableViewDelegate {
     // Action when we delete on a cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            //            SettingsRepository.removeName(at: indexPath.row)
-            //            enterInfoViewController.names.remove(at: indexPath.row)
-            //            enterInfoViewController.removeName(indexName: indexPath.row)
-            //            SettingsRepository.attendees.remove(at: indexPath.row)
-            if editingStyle == .delete {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+            if AllInfoViewController.event != nil {
+                let key = Array(AllInfoViewController.event!.themes.keys)[indexPath.row]
+                AllInfoViewController.event?.themes.removeValue(forKey: "\(key)")
             }
-            
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
 }
 
-// MARK: - Change Themes on the TableView extension
-// To retain changes in a theme
-extension PersonInfoViewController: ThemeEnteredDelegate {
-    func userDidEnteredTheme(keyTheme: String, valueTheme: String) {
-        event?.themes.updateValue(valueTheme, forKey: keyTheme)
-    }
-}
+//// MARK: - Change Themes on the TableView extension
+//// To retain changes in a theme
+//extension PersonInfoViewController: ThemeEnteredDelegate {
+//    func userDidEnteredTheme(keyTheme: String, valueTheme: String) {
+//        AllInfoViewController.event?.themes.updateValue(valueTheme, forKey: keyTheme)
+//    }
+//}

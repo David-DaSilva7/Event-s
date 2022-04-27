@@ -10,26 +10,31 @@ import UIKit
 class ChangeDescriptionThemeViewController: UIViewController {
     
     // MARK: - Properties
-    var event: Event?
+//    var event: Event?
     private var themes: [String: String] = [:]
     var themeName = ""
-    weak var delegate: ThemeEnteredDelegate? = nil
+//    weak var delegate: ThemeEnteredDelegate? = nil
     
     // MARK: - Outlets
     @IBOutlet weak var viewName: UIView!
     @IBOutlet weak var nameTheme: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet var allView: UIView!
     
     // MARK: - Actions
     @IBAction func registerButton(_ sender: Any) {
-        event?.themes[themeName] = descriptionTextView.text
-        print(event?.themes ?? [:])
-        delegate?.userDidEnteredTheme(keyTheme: themeName, valueTheme: descriptionTextView.text)
+        AllInfoViewController.event?.themes[themeName] = descriptionTextView.text
+        print(AllInfoViewController.event?.themes ?? [:])
+//        delegate?.userDidEnteredTheme(keyTheme: themeName, valueTheme: descriptionTextView.text)
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         descriptionTextView.resignFirstResponder()
+    }
+    
+    @IBAction func share(_ sender: Any) {
+        presentActivityController()
     }
     
     // MARK: - Functions
@@ -37,12 +42,14 @@ class ChangeDescriptionThemeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         nameTheme.text = themeName
-        descriptionTextView.text = event?.themes[themeName]
+        descriptionTextView.text = AllInfoViewController.event?.themes[themeName]
     }
     
     // Called after the controller's view is loaded into memory.
     override func viewDidLoad() {
         super.viewDidLoad()
+        ListEventsViewController.setTitleNav()
+        navigationController?.navigationBar.topItem?.titleView = ListEventsViewController.titleNav
         design()
     }
     
@@ -55,6 +62,30 @@ class ChangeDescriptionThemeViewController: UIViewController {
         descriptionTextView.layer.cornerRadius = 16
     }
     
-    
+    // share and save image after swipe
+    fileprivate func shareScreenshotOfGridContainer() -> UIActivityViewController {
+        let sharedImage = [allView?.screenshot]
+        let activityViewController = UIActivityViewController(activityItems: sharedImage as [Any], applicationActivities: nil)
+        activityViewController.completionWithItemsHandler = UIActivityViewController.CompletionWithItemsHandler? { [weak self]  _,_,_,_ in
+            
+            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
+                self?.allView?.transform = CGAffineTransform(translationX: 0, y: 0)
+            }, completion: nil)
+        }
+        return activityViewController
+    }
+
+    // create animation when chooses a photo
+    fileprivate func presentActivityController() {
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0, delay: 0, options: [.curveEaseIn], animations: {
+//            guard let infoAttendees = self.allView else {
+//                return
+//            }
+//            infoAttendees.transform = self.translation
+        }, completion: { _ in
+            let share = self.shareScreenshotOfGridContainer()
+            self.present(share, animated: true)
+        })
+    }
 }
 

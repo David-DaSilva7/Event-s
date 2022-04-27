@@ -10,7 +10,7 @@ import UIKit
 class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     // MARK: - Properties
-    private var event = Event(name: "", numberOfDays: 1, attendees: [], date: "", days: [:], themes: [:])
+    private var event = Event(name: "", numberOfDays: 1, attendees: [], date: "", days: [:], themes: [:], imageEvent: (UIImage(named: "imageAddPicture")?.pngData())!)
     private var names: [String] = []
     
     // MARK: - Outlets
@@ -55,15 +55,36 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     // Notifies the view controller that a segue is about to be performed.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "allInfoVCSegue" {
-            if let allInfoVC = segue.destination as? AllInfoViewController {
-                allInfoVC.event = event
-            }
+            AllInfoViewController.event = event
         }
     }
+    
+//    var titleNav: UILabel = {
+//        let string = UILabel()
+//        string.font = UIFont(name: "gungsuh", size: 21.0)
+//        return string
+//    }()
+//    
+//    func setTitleNav() {
+//        let message = "Event's"
+//        
+//        let attributedString = NSMutableAttributedString(string: message)
+//        let firstAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(red: 211/255, green: 45/255, blue: 39/255, alpha: 1)]
+//        let secondAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.black]
+//        
+//        attributedString.addAttributes(firstAttributes, range: NSRange(location: 0, length: 1))
+//        
+//        attributedString.addAttributes(secondAttributes, range: NSRange(location: 1, length: 6))
+//        
+//        titleNav.attributedText = attributedString
+//        
+//    }
     
     // Called after the controller's view is loaded into memory.
     override func viewDidLoad() {
         super.viewDidLoad()
+        ListEventsViewController.setTitleNav()
+        navigationController?.navigationBar.topItem?.titleView = ListEventsViewController.titleNav
         design()
         dateToday()
     }
@@ -77,7 +98,7 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         components.calendar = calendar
         let minDate = calendar.date(byAdding: components, to: currentDate)!
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateFormat = "dd/MM/yyyy"// yyyy-MM-dd"
         let date = formatter.string(from: datePicker.date)
         self.datePicker.minimumDate = minDate;
         event.date = date
@@ -107,7 +128,6 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 namesList += "\n- \(name)"
             }
         }
-        
         return namesList
     }
     

@@ -28,11 +28,36 @@ class ListEventsViewController: UIViewController {
         prepareView()
     }
     
+    static var titleNav: UILabel = {
+        let string = UILabel()
+        string.font = UIFont(name: "gungsuh", size: 21.0)
+        return string
+    }()
+    
+    static func setTitleNav() {
+        let message = "Event's"
+        
+        let attributedString = NSMutableAttributedString(string: message)
+        let firstAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(red: 211/255, green: 45/255, blue: 39/255, alpha: 1)]
+        let secondAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.black]
+        
+        attributedString.addAttributes(firstAttributes, range: NSRange(location: 0, length: 1))
+        
+        attributedString.addAttributes(secondAttributes, range: NSRange(location: 1, length: 6))
+        
+        titleNav.attributedText = attributedString
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ListEventsViewController.setTitleNav()
+        navigationController?.navigationBar.topItem?.titleView = ListEventsViewController.titleNav
+    }
+    
     // Notifies the view controller that a segue is about to be performed.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
-            let allInfoVC = segue.destination as! AllInfoViewController
-            allInfoVC.event = selectedEvent
+            AllInfoViewController.event = selectedEvent
         }
     }
     
@@ -41,7 +66,6 @@ class ListEventsViewController: UIViewController {
         events = EventsEntity.all()
         tableView.reloadData()
     }
-    
 }
 
 // MARK: - TableView DataSource extension
@@ -79,6 +103,10 @@ extension ListEventsViewController: UITableViewDelegate {
             events = EventsEntity.all()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130.0
     }
 }
 

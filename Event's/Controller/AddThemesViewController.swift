@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import CloudKit
 
 class AddThemesViewController: UIViewController {
     
     // MARK: - Properties
-    var event: Event?
+//    var event: Event?
     private var themes: [String: String] = [:]
-    weak var delegate: ThemeEnteredDelegate? = nil
+//    weak var delegate: ThemeEnteredDelegate? = nil
     
     // MARK: - Outlets
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -26,13 +27,12 @@ class AddThemesViewController: UIViewController {
     }
     
     @IBAction func registerButton(_ sender: Any) {
-        if var event = event {
-            //            EventsEntity.add(event.themes, in: event.id)
+        if AllInfoViewController.event != nil {
+            // EventsEntity.add(event.themes, in: event.id)
             if let nameTheme = nameThemeTextField.text, !nameTheme.isEmpty {
                 themes = [nameTheme: descriptionTextView.text]
-                event.themes = themes
-                print(event.themes )
-                delegate?.userDidEnteredTheme(keyTheme: nameTheme, valueTheme: descriptionTextView.text)
+                AllInfoViewController.event!.themes[nameTheme] = descriptionTextView.text
+//                delegate?.userDidEnteredTheme(keyTheme: nameTheme, valueTheme: descriptionTextView.text)
             }
         }
         navigationController?.popViewController(animated: true)
@@ -42,7 +42,10 @@ class AddThemesViewController: UIViewController {
     // Called after the controller's view is loaded into memory.
     override func viewDidLoad() {
         super.viewDidLoad()
+        ListEventsViewController.setTitleNav()
+        navigationController?.navigationBar.topItem?.titleView = ListEventsViewController.titleNav
         design()
+        // get data of event from coredata
     }
     
     // Design of the different elements
@@ -57,8 +60,8 @@ class AddThemesViewController: UIViewController {
     }
 }
 
-// MARK: - Protocols
-protocol ThemeEnteredDelegate: AnyObject {
-    // Protocol to adjust the table view with the new theme
-    func userDidEnteredTheme(keyTheme: String, valueTheme: String)
-}
+//// MARK: - Protocols
+//protocol ThemeEnteredDelegate: AnyObject {
+//    // Protocol to adjust the table view with the new theme
+//    func userDidEnteredTheme(keyTheme: String, valueTheme: String)
+//}
