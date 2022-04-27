@@ -12,6 +12,7 @@ class EventsEntity: NSManagedObject {
     
     // Retrieve all recipes stored in Core Data
     static func all() -> [Event] {
+        
         let request: NSFetchRequest<EventsEntity> = EventsEntity.fetchRequest()
         guard let saveEvents = try? CoreDataStack.sharedInstance.viewContext.fetch(request) else {
             return []
@@ -28,14 +29,25 @@ class EventsEntity: NSManagedObject {
                 let event = Event(
                     id: id,
                     name: name,
-//                    imageEvent: imageEvent as! String,
                     numberOfDays: Int16(save.numberOfDays),
                     attendees: save.attendees as! [String],
                     date: date,
                     days: days as! [Int : String],
-                    themes: themes as! [String: String])
+                    themes: themes as! [String: String],
+                    imageEvent: imageEvent)
+                
                 
                 events.append(event)
+                var convertedArray: [Date] = []
+                var dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd MM, yyyy"// yyyy-MM-dd"
+                for datqq in event.date! {
+                    let date = dateFormatter.date(from: dat)
+                    if let date = date {
+                        convertedArray.append(date)
+                    }
+                }
+                events.sort(by: { $0.date!.compare($1.date!) == .orderedAscending})
             }
         }
         return events
@@ -50,38 +62,10 @@ class EventsEntity: NSManagedObject {
         saveEvent.date = event.date as NSObject? as? String
         saveEvent.days = event.days as NSObject
         saveEvent.themes = event.themes as NSObject
-        saveEvent.imageEvent = event.imageEvent as NSObject? as? Data
+        saveEvent.imageEvent = event.imageEvent
         saveEvent.attendees = event.attendees as NSObject
         saveContext()
     }
-    
-//    static func add(_ themes: [String: String], in eventWithUUID: String) { // mettre  à jour l'event déjà existant en y ajoutant les themes
-//        // TODO: Récuperer l'event via l'uuid de l'event
-//        let saveThemes = EventsEntity(context: CoreDataStack.sharedInstance.viewContext)
-//        let request: NSFetchRequest<EventsEntity> = EventsEntity.fetchRequest()
-//        request.predicate = NSPredicate(format: "id == %@", eventWithUUID)
-//        do
-//        {
-//            let object = try CoreDataStack.sharedInstance.viewContext.fetch(request)
-//            if object.count == 1
-//            {
-//                let objectUpdate = object.first!
-//                objectUpdate.setValue(themes, forKey: "themes")
-//                do {
-//                    saveThemes.themes = themes as NSObject
-//                    saveContext()
-//                }
-//            }
-//        }
-//        catch
-//        {
-//            print(error)
-//        }
-//
-//        // trasnformer le resultat de la requete en event
-//        // event.themes = themes
-//         // rechercher update object in core data
-//    }
     
     // Check if data already exists in Core Data comparing url
     static func existBy(_ id: String) -> Bool {

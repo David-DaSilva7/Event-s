@@ -5,11 +5,12 @@
         <attribute name="date" optional="YES" attributeType="String"/>
         <attribute name="days" optional="YES" attributeType="Transformable"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="imageEvent" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="numberOfDays" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="themes" optional="YES" attributeType="Transformable"/>
     </entity>
     <elements>
-        <element name="EventsEntity" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="EventsEntity" positionX="-63" positionY="-18" width="128" height="149"/>
     </elements>
 </model>

@@ -17,5 +17,5 @@ struct Event {
     var date: String?
     var days: [Int: String]
     var themes: [String: String]
-//    var imageEvent: String?
+    var imageEvent: Data
 }
