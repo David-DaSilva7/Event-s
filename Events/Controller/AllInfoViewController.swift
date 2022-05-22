@@ -1,19 +1,20 @@
 //
 //  AllInfoViewController.swift
-//  Event's
+//  Events
 //
 //  Created by David Da Silva on 20/01/2022.
 //
 
 import UIKit
 
-class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate, YourCellDelegate {
+class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, YourCellDelegate {
     
     
     // MARK: - Properties
     private let segueIdentifier = "segueToPersonInfo"
     private var selectedName = ""
     static var event: Event?
+    private var pickerSelectedRow = 0
     
     // MARK: - Outlets
     @IBOutlet weak var addPictureButton: UIButton!
@@ -36,6 +37,7 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             }
             EventsEntity.save(event)
         }
+
     }
     
     @IBAction func buttonLibrary(_ sender: UIButton) {
@@ -63,6 +65,17 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     // Notifies the view controller that its view is about to be added to a view hierarchy.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let expireDate = Calendar.current.date(byAdding: .day,
+                                               value: Int(AllInfoViewController.event!.numberOfDays + 1),
+                                               to: AllInfoViewController.event!.date)
+        if Date() > expireDate ?? Date() {
+            buttonContinue.isHidden = true
+            buttonAddAttendees.isHidden = true
+            nameNewAttendees.isHidden = true 
+            
+            
+        }
+
         self.attendeesTableView.reloadData()
         print("\(String(describing: AllInfoViewController.event?.name))")
         design()
@@ -73,38 +86,19 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             } else {
                 numberDaysLabel.text = "\(event.numberOfDays) jours"
             }
-            date.text = event.date
+            let frenchDateFormatter = DateFormatter()
+            frenchDateFormatter.dateFormat = "dd-MM-yyyy"
+            date.text = frenchDateFormatter.string(from: event.date)
         }
     }
-    
-//     var titleNav: UILabel = {
-//     let string = UILabel()
-//     string.font = UIFont(name: "gungsuh", size: 21.0)
-//     return string
-//    }()
-//
-//     func setTitleNav() {
-//     let message = "Event's"
-//
-//     let attributedString = NSMutableAttributedString(string: message)
-//        let firstAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(red: 211/255, green: 45/255, blue: 39/255, alpha: 1)]
-//     let secondAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.black]
-//
-//     attributedString.addAttributes(firstAttributes, range: NSRange(location: 0, length: 1))
-//
-//      attributedString.addAttributes(secondAttributes, range: NSRange(location: 1, length: 6))
-//
-//      titleNav.attributedText = attributedString
-//        }
     
     // Called after the controller's view is loaded into memory.
     override func viewDidLoad() {
         super.viewDidLoad()
-        ListEventsViewController.setTitleNav()
-        navigationController?.navigationBar.topItem?.titleView = ListEventsViewController.titleNav
         imageEvents.image = UIImage(data: AllInfoViewController.event!.imageEvent)
         daysPickerView.delegate = self
         daysPickerView.dataSource = self
+        dayOrganizationTextView.text = AllInfoViewController.event?.days[0]
     }
     
     // Notifies the view controller that a segue is about to be performed.
@@ -112,7 +106,6 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         if segue.identifier == segueIdentifier {
             let personInfoVC = segue.destination as! PersonInfoViewController
             personInfoVC.nameAttendee = selectedName
-//savedEvent
         }
     }
     
@@ -159,33 +152,8 @@ class AllInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     // Content of the selected row
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selection = InfoEvents.numberDaysArray[row]
-//                if let event = event {
-//                    let days = event.days
-//                    let key = Array(days.keys)[row]
-//                    let value = Array(days.values)[row]
-//                    InfoEvents.numberDaysArray[row] = key
-//                    dayOrganizationTextView.text = value
-//
-//                }
-//        if InfoEvents.numberDaysArray[row] == 1 {
-//            dayOrganizationTextView.text = "xoanoxnoao"
-//        } else {
-//            dayOrganizationTextView.text = "haoioisa"
-//        }
-        if row == 0 {
-//            if ((event?.days[selection]?.isEmpty) != nil) {
-//                dayOrganizationTextView.text = ""
-//            } else {
-//                event?.days[selection] = dayOrganizationTextView.text
-//            }
-            AllInfoViewController.event?.days[0] = dayOrganizationTextView.text
-        } else if row == 1 {
-            AllInfoViewController.event?.days[1] = dayOrganizationTextView.text
-        }
-//        event?.days[selection] = dayOrganizationTextView.text
-//        dayOrganizationTextView.text = event?.days[InfoEvents.numberDaysArray[row]]
-        print(AllInfoViewController.event?.days ?? [:])
+        pickerSelectedRow = row
+        dayOrganizationTextView.text = AllInfoViewController.event?.days[row]
     }
 }
 
@@ -212,13 +180,6 @@ extension AllInfoViewController: UITableViewDataSource {
 
 // MARK: - TableView Delegate extension
 extension AllInfoViewController: UITableViewDelegate {
-    
-    // Action when you press on a cell
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        selectedName = event?.attendees[indexPath.row] ?? ""
-    //        performSegue(withIdentifier: segueIdentifier, sender: self)
-    //    }
-    
     // Action when we delete on a cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -243,5 +204,11 @@ extension AllInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
     // Dismiss Picker 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension AllInfoViewController: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        AllInfoViewController.event?.days.updateValue(textView.text, forKey: pickerSelectedRow)
     }
 }
