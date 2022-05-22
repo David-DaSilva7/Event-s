@@ -62,7 +62,7 @@ public extension IQKeyboardManager {
         registerTextFieldViewClass(UITextView.self, didBeginEditingNotificationName: UITextView.textDidBeginEditingNotification.rawValue, didEndEditingNotificationName: UITextView.textDidEndEditingNotification.rawValue)
 
         //  Registering for orientation changes notification
-        NotificationCenter.default.addObserver(self, selector: #selector(self.willChangeStatusBarOrientation(_:)), name: UIApplication.willChangeStatusBarOrientationNotification, object: UIApplication.shared)
+
     }
 
     @objc func unregisterAllNotifications() {
@@ -79,8 +79,7 @@ public extension IQKeyboardManager {
         //  Unregistering for UITextView notification.
         unregisterTextFieldViewClass(UITextView.self, didBeginEditingNotificationName: UITextView.textDidBeginEditingNotification.rawValue, didEndEditingNotificationName: UITextView.textDidEndEditingNotification.rawValue)
 
-        //  Unregistering for orientation changes notification
-        NotificationCenter.default.removeObserver(self, name: UIApplication.willChangeStatusBarOrientationNotification, object: UIApplication.shared)
+
     }
 
     struct Static {
