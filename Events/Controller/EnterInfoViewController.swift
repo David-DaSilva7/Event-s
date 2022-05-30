@@ -68,14 +68,14 @@ class EnterInfoViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     // Retrieve the date selected on the date picker
     private func dateSelected() {
         let calendar = Calendar(identifier: .gregorian)
-        let currentDate = Date()
+//        let currentDate = Date()
         var components = DateComponents()
         components.day = -0
         components.calendar = calendar
-        let minDate = calendar.date(byAdding: components, to: currentDate)!
+//        let minDate = calendar.date(byAdding: components, to: currentDate)!
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        self.datePicker.minimumDate = minDate;
+//        self.datePicker.minimumDate = minDate;
         event.date = datePicker.date
 
     }
